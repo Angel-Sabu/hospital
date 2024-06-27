@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EDIT PAGE</title>
+</head>
+<body>
+ <form class="forms-sample" method="post" action="{% url 'updateapprove' dataid=appo.id %}" enctype="multipart/form-data">
+            {% csrf_token %}
+                    <div class="row">
+                         <div class="col-lg-6">
+							<div class="form-group">
+								<label>Department Name</label>
+                                <input name="Departmentname" id="text" type="text" class="form-control" placeholder="" value="{{appo.Departmentname}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+							<label>Doctor Name</label>
+								<div class="form-group">
+                                <input name="doc_name" id="text2" type="text" class="form-control" placeholder="" value="{{appo.doc_name}}">
+                            </div>
+                        </div>
+
+                         <div class="col-lg-6">
+                            <div class="form-group">
+								<label>Patient Name</label>
+                                <input name="patientname" id="date" type="text" class="form-control" placeholder="Patient Name" value="{{appo.patientname}}">
+                            </div>
+                        </div>
+
+						<div class="col-lg-6">
+							<label>Appoinment Date</label>
+                            <div class="form-group">
+                                <input name="AppoinmentDate" id="date2" type="date" class="form-control" placeholder="Appoinment Date" value="{{appo.AppoinmentDate|date:'Y-m-d'}}">
+                            </div>
+                        </div>
+						 <div class="col-lg-6">
+							 <label> Time </label>
+                            <div class="form-group">
+                                <input name="patienttime" id="time1" type="time" class="form-control" placeholder="Time..." value="{{appo.patienttime|time:'H:i'}}">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+							<label> Mobile Number </label>
+                            <div class="form-group">
+                                <input name="patientnumber" id="phone" type="number" class="form-control" placeholder="Phone Number" value="{{appo.patientnumber}}">
+                            </div><br>
+                        </div>
+						<div class="col-lg-6">
+							<label> UserName </label>
+                            <div class="form-group">
+                                <input name="UserName" id="UserName" type="text" class="form-control" placeholder="UserName" value="{{request.session.Username}}">
+                            </div><br>
+                        </div>
+                    </div>
+				   <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select class="form-control form-control-lg " id="exampleFormControlSelect1"  name="Status" value="{{appo.Status}}">
+
+                        <option>Pending</option>
+                        <option>Approve</option>
+                        <option>Reject</option>
+
+                    </select>
+
+                            </div>
+                        </div>
+
+
+                    <form action="">
+							<button type="submit" class="btn btn-success mr-2">Submit</button>
+						</form>
+                </form>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+        {% for i in messages %}
+            {% if i.tags == 'warning' %}
+                <script>
+                    swal('{{i}}', '' ,'warning');
+
+                </script>
+            {% elif i.tags == 'error' %}
+                <script>
+                     swal('{{i}}', '' ,'warning');
+                </script>
+            {% elif i.tags == 'success' %}
+                <script>
+                     swal('{{i}}','','success');
+                </script>
+            {% else %}
+                <script>
+                    swal('{{i}}','','info');
+                </script>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
+{% endblock %}
+
+
+

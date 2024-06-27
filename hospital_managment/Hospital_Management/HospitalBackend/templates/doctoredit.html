@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EDIT PAGE</title>
+</head>
+<body>
+<div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title" >PRODUCT EDIT PAGE DETAILS</h4>
+
+    <h4><center>PRODUCT EDIT PAGE.......!</center></h4><br>
+    <form class="forms-sample" method="post" action="{% url 'updatedoctor' dataid=doc.id %}" enctype="multipart/form-data">
+            {% csrf_token %}
+                <div class="form-group">
+
+                    <div class="form-group">
+
+                      <label for="exampleInputName1" >Doctor Name</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Doctor Name" name="doc_name" value="{{doc.doc_name}}">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Doctor Specialization</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" name="doc_spec" placeholder="Description">{{doc.doc_spec}}</textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Doctor Overview</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" name="doc_desc" placeholder="Overview">{{doc.doc_desc}}</textarea>
+                    </div>
+                       <div class="form-group">
+                    <label for="exampleFormControlSelect1">Select Department</label>
+                    <select class="form-control form-control-lg" id="exampleFormControlSelect1" name="Departmentname" value="{{prdt.Departmentname}}">
+                        <option>{{doc.Departmentname}}</option>
+                        {% for i in department %}
+                      <option>{{i.Departmentname}}</option>
+                        {% endfor %}
+
+                    </select>
+                  </div>
+
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Doctor Image</label>
+
+
+                                <input class="form-control" type="file" id="formFile" name="doc_image">
+                        <img src="{{doc.doc_image.url}}"  width="100px" height="100px">
+                            </div>
+                    <button type="submit" class="btn btn-success mr-2">Submit</button>
+                </div>
+    </form>
+
+</div>
+                </div>
+              </div>
+
+</body>
+</html>
+{% endblock %}
+
+
+
